@@ -1,4 +1,3 @@
-// src/redux/slices/membersSlice.ts
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Member, Status, Task } from "../../types";
@@ -50,7 +49,7 @@ interface CheckInactivityPayload {
   now: number;
 }
 
-const INACTIVITY_LIMIT_MS = 10 * 60 * 1000; // 10 minutes
+const INACTIVITY_LIMIT_MS = 10 * 60 * 1000;
 
 const membersSlice = createSlice({
   name: "members",
@@ -101,7 +100,6 @@ const membersSlice = createSlice({
       task.completed = next === 100;
       member.lastActiveAt = Date.now();
     },
-    // 👇 NEW: auto-reset to offline after 10 minutes of inactivity
     checkInactivity(state, action: PayloadAction<CheckInactivityPayload>) {
       const { now } = action.payload;
       state.list.forEach((member) => {

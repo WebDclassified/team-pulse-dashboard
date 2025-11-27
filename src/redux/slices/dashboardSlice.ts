@@ -35,7 +35,6 @@ interface DashboardState {
   upcomingInterviews: UpcomingInterview[];
 }
 
-// ✅ Thunk using fetch (no jQuery)
 export const fetchDashboardEmployees = createAsyncThunk<
   RandomEmployee[]
 >("dashboard/fetchEmployees", async () => {
