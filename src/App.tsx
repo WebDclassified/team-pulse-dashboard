@@ -6,16 +6,23 @@ export default function App() {
   const mode = useAppSelector((state) => state.theme.mode);
 
   return (
-    <div className={mode === "dark" ? "dark" : ""}>
-      <div className="min-h-screen bg-[#f5f6fa] dark:bg-slate-900 flex items-start justify-start p-4">
-        <div className="sticky top-4">
-          <Sidebar />
-        </div>
-
-        <div className="flex-1 ml-6 bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 min-h-[90vh]">
-          <Dashboard />
-        </div>
+  <div className={mode === "dark" ? "dark" : ""}>
+    <div className="min-h-screen flex gap-4 transition-all duration-300
+      bg-[#edf1ff] dark:bg-[#0d1117]      /* better dark base */
+      text-slate-800 dark:text-slate-200"
+    >
+      <div className="w-64">
+        <Sidebar />
       </div>
+
+      <main className="flex-1 p-6 rounded-xl 
+        bg-white dark:bg-[#111827] shadow-xl   /* higher contrast */
+        border border-slate-200 dark:border-slate-700"
+      >
+        <Dashboard />
+      </main>
     </div>
-  );
+  </div>
+);
+
 }
