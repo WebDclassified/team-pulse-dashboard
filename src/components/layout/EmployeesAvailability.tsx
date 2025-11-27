@@ -20,9 +20,7 @@ const EmployeesAvailability: FC = () => {
   ];
 
   return (
-    <div className="bg-white dark:bg-[#1a2332] shadow-md rounded-xl p-4 
-  border border-slate-200 dark:border-slate-700 transition-all">
-
+    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4">
       <h2 className="font-semibold mb-4">Employees Availability</h2>
 
       <div className="grid grid-cols-2 gap-4">

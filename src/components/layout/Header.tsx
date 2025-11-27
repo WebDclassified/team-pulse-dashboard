@@ -3,11 +3,7 @@ import { FiInfo, FiBell, FiPlus, FiSearch } from "react-icons/fi";
 
 const Header: FC = () => {
   return (
-    <header className="flex items-center justify-between p-4 mb-6
-  rounded-xl shadow-sm transition-all duration-300
-  bg-white dark:bg-[#161f2e]
-  border border-slate-200 dark:border-slate-700">
-
+    <header className="flex items-center justify-between mb-8">
       <div className="flex-1 max-w-md">
         <div className="relative">
           <span className="absolute inset-y-0 left-3 flex items-center text-slate-400">
@@ -16,9 +12,9 @@ const Header: FC = () => {
           <input
             type="text"
             placeholder="Search"
-            className="bg-white dark:bg-[#0e1729] px-3 py-2 rounded-lg border
-  border-slate-300 dark:border-slate-700 text-sm 
-  placeholder:text-slate-400 dark:placeholder:text-slate-500"
+            className="w-full pl-10 pr-3 py-2 rounded-md bg-slate-100 text-sm
+                       outline-none border border-slate-200 focus:ring-2
+                       focus:ring-indigo-400 focus:border-indigo-400"
           />
         </div>
       </div>

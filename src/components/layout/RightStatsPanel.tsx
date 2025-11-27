@@ -18,7 +18,7 @@ const RightStatsPanel: FC = () => {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-[#1a2332] p-4 rounded-xl shadow-sm border dark:border-slate-700">
+      <div className="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
             <FiUsers className="text-green-600" />

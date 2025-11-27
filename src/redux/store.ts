@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import membersReducer from "./slices/membersSlice";
 import roleReducer from "./slices/roleSlice";
 import dashboardReducer from "./slices/dashboardSlice";
-import themeReducer from "./slices/themeSlice";
 
 const PERSIST_KEY = "teamPulseState";
 
@@ -21,7 +20,6 @@ export const store = configureStore({
     members: membersReducer,
     role: roleReducer,
     dashboard: dashboardReducer,
-    theme: themeReducer,
   }
 });
 
@@ -32,7 +30,6 @@ store.subscribe(() => {
       members: state.members,
       role: state.role,
       dashboard: state.dashboard,
-      theme: state.theme,
     };
     localStorage.setItem(PERSIST_KEY, JSON.stringify(toPersist));
   } catch {

@@ -23,8 +23,7 @@ const TotalEmployeesDonut: FC = () => {
   const total = maleCount + femaleCount || 0;
 
   return (
-<div className="bg-white dark:bg-[#1a2332] shadow-md rounded-xl p-4 
-  border border-slate-200 dark:border-slate-700">
+    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4">
       <div className="flex items-start justify-between mb-4">
         <h2 className="font-semibold">Total Employees</h2>
         <span className="text-2xl font-bold">{total}</span>
