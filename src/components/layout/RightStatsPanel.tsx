@@ -4,7 +4,7 @@ import { FiBarChart2, FiUsers, FiTrendingUp, FiClock } from "react-icons/fi";
 const RightStatsPanel: FC = () => {
   return (
     <div className="space-y-4">
-      <div className="bg-[#3f4d9b] dark:bg-[#0e1838] rounded-xl p-4 shadow-md text-white">
+      <div className="bg-[#3f4d9b]  rounded-xl p-4 shadow-md text-white">
         <div className="flex flex-col gap-2">
           <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center">
             <span className="text-lg font-semibold">📝</span>
