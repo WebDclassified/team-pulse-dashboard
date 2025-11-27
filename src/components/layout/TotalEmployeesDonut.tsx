@@ -8,7 +8,7 @@ import {
 } from "recharts";
 import { useAppSelector } from "../../redux/hooks";
 
-const COLORS = ["#60a5fa", "#f472b6"]; // blue, pink
+const COLORS = ["#60a5fa", "#f472b6"]; 
 
 const TotalEmployeesDonut: FC = () => {
   const { maleCount, femaleCount } = useAppSelector(

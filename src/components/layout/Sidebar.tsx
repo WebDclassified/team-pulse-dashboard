@@ -1,4 +1,3 @@
-// src/components/layout/Sidebar.tsx
 import type { FC } from "react";
 import {
   FaTachometerAlt,
@@ -35,7 +34,6 @@ const Sidebar: FC = () => {
 
   return (
     <aside className="h-screen w-64 bg-[#3f4d9b] text-white shadow-xl rounded-xl p-6 flex flex-col">
-      {/* Logo */}
       <div className="flex items-center gap-3 mb-8">
         <div className="w-12 h-12 rounded-xl bg-white/15 flex items-center justify-center">
           <span className="w-7 h-7 flex items-center justify-center text-sm border-2 border-white rounded-lg font-bold">
@@ -45,7 +43,6 @@ const Sidebar: FC = () => {
         <p className="text-xl font-semibold tracking-wide">My-Task</p>
       </div>
 
-      {/* Menu */}
       <nav className="flex-1 overflow-y-auto">
         <ul className="space-y-2">
           {menuItems.map(({ label, icon: Icon }) => (
@@ -65,7 +62,6 @@ const Sidebar: FC = () => {
         </ul>
       </nav>
 
-      {/* Bottom toggles */}
       <div className="mt-6 pt-6 border-t border-white/15 space-y-3 text-xs">
         <ToggleSwitch
           label="Enable Dark Mode!"

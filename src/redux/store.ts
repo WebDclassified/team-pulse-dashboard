@@ -16,28 +16,30 @@ function loadState() {
     return undefined;
   }
 }
+
 export const store = configureStore({
   reducer: {
     members: membersReducer,
     role: roleReducer,
-    dashboard: dashboardReducer,   // <-- required
+    dashboard: dashboardReducer,
     theme: themeReducer,
   },
-   preloadedState: loadState(),
+  preloadedState: loadState(),
 });
 
-
+// persist selected slices
 store.subscribe(() => {
   try {
     const state = store.getState();
-    const stateToPersist = {
+    const toPersist = {
       members: state.members,
       role: state.role,
       dashboard: state.dashboard,
       theme: state.theme,
     };
-    localStorage.setItem(PERSIST_KEY, JSON.stringify(stateToPersist));
+    localStorage.setItem(PERSIST_KEY, JSON.stringify(toPersist));
   } catch {
+    // ignore write errors
   }
 });
 

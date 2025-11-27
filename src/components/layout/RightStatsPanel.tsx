@@ -4,24 +4,20 @@ import { FiBarChart2, FiUsers, FiTrendingUp, FiClock } from "react-icons/fi";
 const RightStatsPanel: FC = () => {
   return (
     <div className="space-y-4">
-      {/* Applications big card */}
       <div className="bg-[#3f4d9b] text-white rounded-xl p-4 flex justify-between items-center shadow-sm">
         <div className="flex flex-col gap-2">
           <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center">
-            {/* simple document icon */}
             <span className="text-lg font-semibold">📝</span>
           </div>
           <div className="text-3xl font-bold leading-tight">1546</div>
           <div className="text-sm opacity-90">Applications</div>
         </div>
 
-        {/* Illustration placeholder */}
         <div className="w-24 h-24 rounded-lg bg-white/10 flex items-center justify-center text-xs text-white/80">
           Illustration
         </div>
       </div>
 
-      {/* Interviews card */}
       <div className="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
@@ -35,7 +31,6 @@ const RightStatsPanel: FC = () => {
         <FiBarChart2 className="text-slate-400" size={20} />
       </div>
 
-      {/* Hired card */}
       <div className="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
@@ -49,7 +44,6 @@ const RightStatsPanel: FC = () => {
         <FiBarChart2 className="text-slate-400" size={20} />
       </div>
 
-      {/* Upcoming Interviews list */}
       <div className="bg-white rounded-xl p-4 shadow-sm">
         <h2 className="font-semibold mb-4 text-sm">Upcoming Interviews</h2>
 
