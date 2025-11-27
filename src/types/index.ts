@@ -1,4 +1,3 @@
-// src/types/index.ts
 export type Status = "working" | "break" | "meeting" | "offline";
 
 export interface Task {
@@ -16,8 +15,7 @@ export interface Member {
   status: Status;
   tasks: Task[];
 
-  // 👇 NEW: used for auto-reset
-  lastActiveAt: number; // timestamp (Date.now())
+  lastActiveAt: number; 
 }
 
 export type Role = "lead" | "member";

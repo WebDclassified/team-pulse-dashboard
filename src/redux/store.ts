@@ -1,4 +1,3 @@
-// src/redux/store.ts
 import { configureStore } from "@reduxjs/toolkit";
 import membersReducer from "./slices/membersSlice";
 import roleReducer from "./slices/roleSlice";
@@ -7,27 +6,25 @@ import themeReducer from "./slices/themeSlice";
 
 const PERSIST_KEY = "teamPulseState";
 
-function loadState() {
-  try {
-    const serialized = localStorage.getItem(PERSIST_KEY);
-    if (!serialized) return undefined;
-    return JSON.parse(serialized);
-  } catch {
-    return undefined;
-  }
-}
+// function loadState() {
+//   try {
+//     const serialized = localStorage.getItem(PERSIST_KEY);
+//     if (!serialized) return undefined;
+//     return JSON.parse(serialized);
+//   } catch {
+//     return undefined;
+//   }
+// }
 
 export const store = configureStore({
-  reducer: {
+  reducer: {                     
     members: membersReducer,
     role: roleReducer,
     dashboard: dashboardReducer,
     theme: themeReducer,
-  },
-  preloadedState: loadState(),
+  }
 });
 
-// persist selected slices
 store.subscribe(() => {
   try {
     const state = store.getState();
@@ -39,7 +36,6 @@ store.subscribe(() => {
     };
     localStorage.setItem(PERSIST_KEY, JSON.stringify(toPersist));
   } catch {
-    // ignore write errors
   }
 });
 
