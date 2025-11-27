@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import $ from "jquery";
 
-// ==================== STATE INTERFACES ====================
 interface RandomEmployee {
   id: string;
   gender: "male" | "female";
@@ -20,13 +18,11 @@ interface DashboardState {
   loading: boolean;
   error: string | null;
 
-  // API Employees
   employees: RandomEmployee[];
   totalEmployees: number;
   maleCount: number;
   femaleCount: number;
 
-  // Analytics
   attendance: number;
   lateComing: number;
   absent: number;
@@ -39,22 +35,16 @@ interface DashboardState {
   upcomingInterviews: UpcomingInterview[];
 }
 
-// ==================== THUNK USING $.ajax() ====================
+// ✅ Thunk using fetch (no jQuery)
 export const fetchDashboardEmployees = createAsyncThunk<
   RandomEmployee[]
 >("dashboard/fetchEmployees", async () => {
-  const data = await new Promise<any>((resolve, reject) => {
-    $.ajax({
-      url: "https://randomuser.me/api/?results=30",
-      dataType: "json",
-      success(response) {
-        resolve(response);
-      },
-      error(_xhr, _status, errorThrown) {
-        reject(errorThrown);
-      },
-    });
-  });
+  const res = await fetch("https://randomuser.me/api/?results=30");
+  if (!res.ok) {
+    throw new Error("Failed to fetch employees");
+  }
+
+  const data = await res.json();
 
   return (data.results || []).map((u: any) => ({
     id: u.login?.uuid ?? crypto.randomUUID(),
@@ -62,12 +52,11 @@ export const fetchDashboardEmployees = createAsyncThunk<
   }));
 });
 
-// ==================== INITIAL STATE ====================
 const initialState: DashboardState = {
   loading: false,
   error: null,
   employees: [],
-  totalEmployees: 423, // fallback defaults
+  totalEmployees: 423,
   maleCount: 260,
   femaleCount: 163,
   attendance: 400,
@@ -78,13 +67,30 @@ const initialState: DashboardState = {
   interviews: 246,
   hired: 101,
   upcomingInterviews: [
-    { id: 1, name: "Natalie Gibson", role: "UI/UX Designer", time: "1.30 - 1.30", color: "#facc15" },
-    { id: 2, name: "Peter Piper", role: "Web Designer", time: "9.00 - 1.30", color: "#f97316" },
-    { id: 3, name: "John Carter", role: "Product Manager", time: "11.00 - 12.00", color: "#22c55e" },
+    {
+      id: 1,
+      name: "Natalie Gibson",
+      role: "UI/UX Designer",
+      time: "1.30 - 1.30",
+      color: "#facc15",
+    },
+    {
+      id: 2,
+      name: "Peter Piper",
+      role: "Web Designer",
+      time: "9.00 - 1.30",
+      color: "#f97316",
+    },
+    {
+      id: 3,
+      name: "John Carter",
+      role: "Product Manager",
+      time: "11.00 - 12.00",
+      color: "#22c55e",
+    },
   ],
 };
 
-// ==================== SLICE ====================
 const dashboardSlice = createSlice({
   name: "dashboard",
   initialState,
@@ -99,23 +105,30 @@ const dashboardSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchDashboardEmployees.fulfilled, (state, action) => {
-        state.loading = false;
-        state.employees = action.payload;
+      .addCase(
+        fetchDashboardEmployees.fulfilled,
+        (state, action: PayloadAction<RandomEmployee[]>) => {
+          state.loading = false;
+          state.employees = action.payload;
 
-        state.totalEmployees = action.payload.length;
-        state.maleCount = action.payload.filter(e => e.gender === "male").length;
-        state.femaleCount = action.payload.filter(e => e.gender === "female").length;
+          state.totalEmployees = action.payload.length || state.totalEmployees;
+          state.maleCount = action.payload.filter(
+            (e) => e.gender === "male"
+          ).length;
+          state.femaleCount =
+            action.payload.length - state.maleCount;
 
-        const t = state.totalEmployees || 1;
-        state.attendance = Math.round(t * 0.9);
-        state.lateComing = Math.round(t * 0.04);
-        state.absent = t - state.attendance;
-        state.leaveApply = Math.round(t * 0.1);
-      })
+          const t = state.totalEmployees || 1;
+          state.attendance = Math.round(t * 0.9);
+          state.lateComing = Math.round(t * 0.04);
+          state.absent = t - state.attendance;
+          state.leaveApply = Math.round(t * 0.1);
+        }
+      )
       .addCase(fetchDashboardEmployees.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message ?? "Failed to load data";
+        state.error =
+          action.error.message ?? "Failed to load dashboard data";
       });
   },
 });

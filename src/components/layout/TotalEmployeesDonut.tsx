@@ -6,24 +6,24 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-
-interface TotalEmployeesDonutProps {
-  male: number;
-  female: number;
-}
+import { useAppSelector } from "../../redux/hooks";
 
 const COLORS = ["#60a5fa", "#f472b6"]; // blue, pink
 
-const TotalEmployeesDonut: FC<TotalEmployeesDonutProps> = ({ male, female }) => {
+const TotalEmployeesDonut: FC = () => {
+  const { maleCount, femaleCount } = useAppSelector(
+    (state) => state.dashboard
+  );
+
   const data = [
-    { name: "Men", value: male },
-    { name: "Women", value: female },
+    { name: "Men", value: maleCount },
+    { name: "Women", value: femaleCount },
   ];
 
-  const total = male + female;
+  const total = maleCount + femaleCount || 0;
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-4">
+    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-4">
       <div className="flex items-start justify-between mb-4">
         <h2 className="font-semibold">Total Employees</h2>
         <span className="text-2xl font-bold">{total}</span>
